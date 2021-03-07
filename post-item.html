@@ -1,0 +1,67 @@
+<!-- This page is to post a new item -->
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Final</title>
+  <link href="https://unpkg.com/tailwindcss@^2/dist/tailwind.min.css" rel="stylesheet" type="text/css">
+  <link type="text/css" rel="stylesheet" href="https://www.gstatic.com/firebasejs/ui/4.7.3/firebase-ui-auth.css" />
+</head>
+
+<body>
+  <div class="sign-in-or-sign-out"></div>
+ 
+  <!-- Put the Firebase config here -->
+  <!-- The core Firebase JS SDK is always required and must be listed first -->
+  <script src="https://www.gstatic.com/firebasejs/8.2.7/firebase-app.js"></script>
+  <!-- Firebase Auth -->
+  <script src="https://www.gstatic.com/firebasejs/8.2.7/firebase-auth.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/ui/4.7.3/firebase-ui-auth.js"></script>
+
+  <script>
+    // Your web app's Firebase configuration
+    var firebaseConfig = {
+    apiKey: "AIzaSyArNFCDtGXORek260t00Eq6j7UefiiWA0I",
+    authDomain: "kiei-451-bd7ba.firebaseapp.com",
+    projectId: "kiei-451-bd7ba",
+    storageBucket: "kiei-451-bd7ba.appspot.com",
+    messagingSenderId: "115378137779",
+    appId: "1:115378137779:web:22b50517a638f3a54a1ec6"
+    } // replace
+    // Initialize Firebase
+    firebase.initializeApp(firebaseConfig);
+  </script>
+  <script src="post-item.js"></script>
+
+
+
+
+ <!-- link to user profile, doesn't work yet-->
+    <p class='m-auto text-center'><a class="text-green-500 font-bold" href="Index.html">User Profile</a></p>
+ <!-- link to sign out, doesn't work yet-->
+ <p class='m-auto text-center'><a class="text-green-500 font-bold" href="Index.html">Sign Out</a></p>
+ <!-- link to return to available items, doesn't work yet-->
+    <p class='m-auto text-center'><a class="text-green-500 font-bold" href="Index.html">View Available Items</a></p>
+
+ <h1 class="font-bold text-6xl text-yellow-500 text-center">Furniture Swap</h1>
+
+ <!-- post new item form, what is name? -->
+      <div>
+        <form class="w-full mt-8">
+          <input type="text" id="itemName" name="itemName" placeholder="Item Name" class="my-2 p-2 w-64 border border-gray-400 rounded shadow-xl focus:outline-none focus:ring-purple-500 focus:border-purple-500">
+          <input type="text" id="itemHeight" name="itemHeight" placeholder="Height (inches)" class="my-2 p-2 w-64 border border-gray-400 rounded shadow-xl focus:outline-none focus:ring-purple-500 focus:border-purple-500">
+          <input type="text" id="itemWidth" name="itemWidth" placeholder="Width (inches)" class="my-2 p-2 w-64 border border-gray-400 rounded shadow-xl focus:outline-none focus:ring-purple-500 focus:border-purple-500">
+          <input type="text" id="itemLength" name="itemLength" placeholder="Length (inches)" class="my-2 p-2 w-64 border border-gray-400 rounded shadow-xl focus:outline-none focus:ring-purple-500 focus:border-purple-500">
+          <input type="text" id="color" name="color" placeholder="Color" class="my-2 p-2 w-64 border border-gray-400 rounded shadow-xl focus:outline-none focus:ring-purple-500 focus:border-purple-500">
+          <input type="text" id="neighborhood" name="neighborhood" placeholder="Neighborhood" class="my-2 p-2 w-64 border border-gray-400 rounded shadow-xl focus:outline-none focus:ring-purple-500 focus:border-purple-500">
+          <input type="text" id="imageURL" name="imageURL" placeholder="Image URL" class="my-2 p-2 w-64 border border-gray-400 rounded shadow-xl focus:outline-none focus:ring-purple-500 focus:border-purple-500">
+          <button class="bg-green-500 hover:bg-green-600 text-white px-4 py-2 rounded-xl">Post</button>
+        </form>
+      </div>
+    </div>
+
+</body>
+
+</html>
