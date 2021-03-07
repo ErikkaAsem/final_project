@@ -23,6 +23,11 @@
     <div class="md:w-1/2 bg-yellow-600 border p-3 m-3 font-bold text-white">Neighborhood</div>
   </div>
 </div>
+
+<div class="posts">
+  <!-- Posts rendered from JavaScript -->
+</div>
+
   <div class="sign-in-or-sign-out"></div>
  
   <!-- Put the Firebase config here -->
@@ -34,11 +39,17 @@
 
   <script>
     // Your web app's Firebase configuration
-    var firebaseConfig = {} // replace
+    var firebaseConfig = {
+    apiKey: "AIzaSyArNFCDtGXORek260t00Eq6j7UefiiWA0I",
+    authDomain: "kiei-451-bd7ba.firebaseapp.com",
+    projectId: "kiei-451-bd7ba",
+    storageBucket: "kiei-451-bd7ba.appspot.com",
+    messagingSenderId: "115378137779",
+    appId: "1:115378137779:web:22b50517a638f3a54a1ec6"} // replace
     // Initialize Firebase
     firebase.initializeApp(firebaseConfig);
   </script>
-  <script src="index.js"></script>
+  <script src="homepage.js"></script>
 </body>
 
 </html>
