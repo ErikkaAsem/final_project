@@ -14,6 +14,10 @@ firebase.auth().onAuthStateChanged(async function(user) {
           firebase.auth().signOut()
           document.location.href = 'index.html'
         })
+        document.querySelector('.navigation').innerHTML=`
+        <a href = "./post-item.html">Post Item</a>
+        `
+
   } else {
     // Signed out
     console.log('signed out')
