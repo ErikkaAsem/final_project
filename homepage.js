@@ -1,5 +1,6 @@
 //This will be the landing page where users sign in and see a sample of items exchanges on the site
 
+//What's the diff between get_posts and render post?
 
 firebase.auth().onAuthStateChanged(async function(user) {
     if (user) {
@@ -13,7 +14,32 @@ firebase.auth().onAuthStateChanged(async function(user) {
         firebase.auth().signOut()
         document.location.href = 'homepage.html'
       })
-      
+    // Listen for the form submit and create/render the new post UP TO 6
+//* HELP * How do I reference a form on a diff HTML page? You can only listen to an event on your page. We can hide the form. document.location.href changes where they're going. This would put the form on its own page.
+      document.querySelector('form').addEventListener('submit', async function(event) {
+        event.preventDefault()
+        let postUsername = user.displayName
+        let postImageUrl = document.querySelector('#image-url').value
+        let response = await fetch('/.netlify/functions/create_post', {
+          method: 'POST',
+          body: JSON.stringify({
+            userId: user.uid,
+            username: postUsername,
+            imageUrl: postImageUrl
+          })
+        })
+        let post = await response.json()
+        document.querySelector('#image-url').value = '' // clear the image url field
+        renderPost(post)
+      })
+  
+      let response = await fetch('/.netlify/functions/get_furniture')
+      let posts = await response.json()
+      for (let i=0; i<posts.length; i++) {
+        let post = posts[i]
+        renderPost(post)
+      }
+
     } else {
       // Signed out
       console.log('signed out')

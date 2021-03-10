@@ -1,3 +1,5 @@
+//ref get to dos final 
+
 // /.netlify/functions/get_posts
 let firebase = require('./firebase')
 
@@ -14,24 +16,8 @@ exports.handler = async function(event) {
   for (let i=0; i<furniture.length; i++) {
     let furnitureId = furniture[i].id                                // the ID for the given post
     let furnitureData = furniture[i].data()                          // the rest of the post data
-   //* HELP * 
-   let likesQuery = await db.collection('likes')           // likes from Firestore
-                             .where('furnitureId', '==', furnitureId) // for the given postId
-                             .get()
-     //* HELP * 
-     let commentsQuery = await db.collection('comments')     // likes from Firestore
-                             .where('furnitureId', '==', furnitureId) // for the given postId
-                             .get()
-    let commentsData = []                                   // an empty Array
-    let comments = commentsQuery.docs                       // the comments documents
-
-    // loop through the comment documents
-    for (let i=0; i<comments.length; i++) {
-      let comment = comments[i].data()                      // grab the comment data
-      commentsData.push({
-        username: comment.username,                         // the author of the comment
-        text: comment.text                                  // the comment text
-      })
+  
+  
     }
 
     // add a new Object of our own creation to the postsData Array
