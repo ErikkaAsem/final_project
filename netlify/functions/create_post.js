@@ -11,10 +11,11 @@ exports.handler = async function(event) {
   let itemName = body.itemName
   let itemWidth = body.itemWidth
   let neighborhood = body.neighborhood
-       // username: username
+  let userName = body.userName
+  let userEmail = body.userEmail
   
   // console.log(`user: ${userId}`)
-  // console.log(`imageUrl: ${imageUrl}`)
+  console.log(`imageURl: ${imageURL}`)
 
   let newPost = { 
     color: color, 
@@ -24,13 +25,14 @@ exports.handler = async function(event) {
     itemName: itemName, 
     itemWidth: itemWidth, 
     neighborhood: neighborhood, 
-        // username: username, 
+    userName: userName,
+    userEmail:userEmail,
     created: firebase.firestore.FieldValue.serverTimestamp()
   }
 
   let docRef = await db.collection('furniture').add(newPost)
-  newPost.id = docRef.id
-  newPost.likes = 0
+  // newPost.id = docRef.id
+  // newPost.likes = 0
 
   return {
     statusCode: 200,

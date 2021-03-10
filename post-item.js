@@ -1,7 +1,7 @@
 firebase.auth().onAuthStateChanged(async function(user) {
   if (user) {
     // Signed in
-    console.log('signed in')
+    console.log(`signed in %o`, user)
 
     // Sign-out button
     document.querySelector('.sign-in-or-sign-out').innerHTML = `
@@ -19,7 +19,7 @@ firebase.auth().onAuthStateChanged(async function(user) {
       console.log(event)
       // let postUsername = user.displayName
       let color = document.querySelector('#color').value
-      let imageURL = document.querySelector('#imageUrl').value
+      let imageURL = document.querySelector('#imageURL').value
       let neighborhood = document.querySelector('#neighborhood').value
       let itemHeight= document.querySelector('#itemHeight').value
       let itemLength = document.querySelector('#itemLength').value
@@ -35,6 +35,8 @@ firebase.auth().onAuthStateChanged(async function(user) {
           itemName: itemName, 
           itemWidth: itemWidth, 
           neighborhood: neighborhood, 
+          userName: user.displayName,
+          userEmail: user.email,
         })
       })
   
@@ -63,7 +65,7 @@ firebase.auth().onAuthStateChanged(async function(user) {
       signInOptions: [
         firebase.auth.EmailAuthProvider.PROVIDER_ID
       ],
-      signInSuccessUrl: 'index.html'
+      signInSuccessUrl: 'post-item.html'
     }
 
     // Starts FirebaseUI Auth
