@@ -1,26 +1,22 @@
 //This will be the landing page where users sign in and see a sample of items exchanges on the site
 
-//What's the diff between get_posts and render post?
+
 
 firebase.auth().onAuthStateChanged(async function(user) {
     if (user) {
       // Signed in
       console.log('signed in')
-      document.querySelector('.sign-in-or-sign-out').innerHTML = `
-      <button class="text-blue-900 align-right underline sign-out">Sign Out</button>`
 
-      document.querySelector('.sign-out').addEventListener('click', function(event) {
-        console.log('sign out clicked')
-        firebase.auth().signOut()
-        document.location.href = 'homepage.html'
-      })
+      //2 backend talk to firestore -->get data from the collection
+
     // Listen for the form submit and create/render the new post UP TO 6
 //* HELP * How do I reference a form on a diff HTML page? You can only listen to an event on your page. We can hide the form. document.location.href changes where they're going. This would put the form on its own page.
-      document.querySelector('form').addEventListener('submit', async function(event) {
+//check movies lab & kelloggram  
+document.querySelector('form').addEventListener('post', async function(event) {
         event.preventDefault()
         let postUsername = user.displayName
-        let postImageUrl = document.querySelector('#image-url').value
-        let response = await fetch('/.netlify/functions/create_post', {
+        let postImageUrl = document.querySelector('#imageURL').value
+        let response = await fetch('/.netlify/functions/get_furniture', {
           method: 'POST',
           body: JSON.stringify({
             userId: user.uid,
@@ -28,17 +24,45 @@ firebase.auth().onAuthStateChanged(async function(user) {
             imageUrl: postImageUrl
           })
         })
-        let post = await response.json()
-        document.querySelector('#image-url').value = '' // clear the image url field
-        renderPost(post)
       })
-  
-      let response = await fetch('/.netlify/functions/get_furniture')
-      let posts = await response.json()
+        //1 request data from the backend
+        let posts = await response.json()
+        document.querySelector('#imageURL').value = '' 
+        renderPost(posts)
+
       for (let i=0; i<posts.length; i++) {
         let post = posts[i]
         renderPost(post)
-      }
+      
+      
+  //3 map the data into an array to return to the front end (json.stringify). This requires a loop and then put it into a new array.
+
+      
+      
+
+      //4 Front end: convert through fetch through json and loop through the furniture. For each item in the array i'll need to do dom manipulation (insert adjacent html/style it)
+document.querySelector(`.posts`).insertAdjacentHTML('beforeend', `
+<div class="post-${imageURL}"</div>
+<div class="post-${itemName} py-4 text-m w-full"</div>
+<div class="post-${itemColor} py-4 text-m w-full"</div>
+<div class="post-${neighborhood} py-4 text-m w-full"</div>
+`)
+
+document.querySelector(`#button .done`).addEventListener('click', async function(event) {
+  event.preventDefault()
+  document.querySelector(`#button`).classList.add('opacity-20')
+  
+})
+}
+    // Create a sign-out button
+    document.querySelector('.sign-in-or-sign-out').innerHTML = `
+    <button class="text-blue-900 align-right underline sign-out">Sign Out</button>`
+
+    document.querySelector('.sign-out').addEventListener('click', function(event) {
+      console.log('sign out clicked')
+      firebase.auth().signOut()
+      document.location.href = 'homepage.html'
+    })
 
     } else {
       // Signed out
