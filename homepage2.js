@@ -35,7 +35,8 @@ firebase.auth().onAuthStateChanged(async function (user) {
     let db = firebase.firestore()
     let response = await fetch('/.netlify/functions/get_furniture')
     let json = await response.json()
-
+    
+    
     console.log(json)
 
     if (user) {
@@ -49,15 +50,15 @@ firebase.auth().onAuthStateChanged(async function (user) {
             document.querySelector('.posts').insertAdjacentHTML('beforeend', `
     <div class="flex border-4 p-4 my-4 text-center">
     <div class="w-1/2">
-      <h2 class="text-2xl py-1">${post.itemName}</h2>
-        <p class="font-bold text-gray-600">Color: ${post.color}</p>
-        <p class="font-bold text-gray-600">Neighborhood: ${post.neighborhood}</p>
-        <p class="font-bold text-gray-600">Height: ${post.itemHeight}</p>
-        <p class="font-bold text-gray-600">Length: ${post.itemLength}</p> </div>
+      <h2 class="text-2xl py-1 font-bold text-green-700 text-xl">${post.itemName}</h2>
+        <p class="font-bold text-yellow-600">Color: ${post.color}</p>
+        <p class="font-bold text-yellow-600">Neighborhood: ${post.neighborhood}</p>
+        <p class="font-bold text-yellow-600">Height: ${post.itemHeight}</p>
+        <p class="font-bold text-yellow-600">Length: ${post.itemLength}</p> </div>
         <img src='${post.imageURL}' width="200" height="200" class="w-1/2">
-        <a href="#" class="swap-button block text-center text-white bg-blue-700 hover:bg-blue-900 mt-4 px-4 py-2 rounded">Let's swap!</a>
+        <a href="#" class="swap-button block text-center text-white bg-green-700 hover:bg-green-900 mt-4 px-4 py-2 rounded">Let's swap!</a>
     </div>
-        `)
+        `)}
 //NEED HELP WITH BELOW
         document.querySelector(`.post-${post.itemName}`).addEventListener('click', async function(event) {
             event.preventDefault()
@@ -79,10 +80,10 @@ firebase.auth().onAuthStateChanged(async function (user) {
           // loop through the rides and for each ride, use the provided levelOfService() function to determine the service level, and use newArray.push(ride) to add "Noober Purple" rides into the new array
               
   if (`${post.color}` == 'white') {
-}
+
     renderItems(post)
-}
-        )}
+}}
+        )
 //NEED HELP WITH ABOVE
         document.querySelector(`#green-filter`).addEventListener('click', async function (event) {
             console.log('green was clicked')
