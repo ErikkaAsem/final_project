@@ -9,8 +9,7 @@
   <link href="https://unpkg.com/tailwindcss@^2/dist/tailwind.min.css" rel="stylesheet" type="text/css">
   <link type="text/css" rel="stylesheet" href="https://www.gstatic.com/firebasejs/ui/4.7.3/firebase-ui-auth.css" />
 </head>
-
-<body>
+<body class="bg-yellow-50">
   <div class="sign-in-or-sign-out"></div>
  
   <!-- Put the Firebase config here -->
@@ -36,20 +35,15 @@
   <script src="post-item.js"></script>
 
 
+ <p class='text-left'><a class="font-bold text-xs text-yellow-900 text-center m-2" href = "./homepage2.html">View Available Items</a></p>
+ <p class='text-left'><a class="font-bold text-xs text-yellow-900 text-center m-2" href = "./myprofile.html">My Profile</a></p>
+
+ <h1 class="font-bold text-6xl text-green-700 text-center mb-8">HomeGoods Swap</h1>
+ <h1 class="font-bold text-xl text-yellow-600 text-center mb-2">Enter details below to post a new item</h1>
 
 
- <!-- link to user profile, doesn't work yet-->
-    <p class='m-auto text-center'><a class="text-green-500 font-bold" href="Index.html">User Profile</a></p>
- <!-- link to sign out, doesn't work yet-->
- <p class='m-auto text-center'><a class="text-green-500 font-bold" href="Index.html">Sign Out</a></p>
- <!-- link to return to available items, doesn't work yet-->
-    <p class='m-auto text-center'><a class="text-green-500 font-bold" href="Index.html">View Available Items</a></p>
-
- <h1 class="font-bold text-6xl text-yellow-500 text-center">Furniture Swap</h1>
-
- <!-- post new item form, what is name? -->
       <div>
-        <form class="w-full mt-8">
+        <form class="w-full ml-4">
           <input type="text" id="itemName" name="itemName" placeholder="Item Name" class="my-2 p-2 w-64 border border-gray-400 rounded shadow-xl focus:outline-none focus:ring-purple-500 focus:border-purple-500">
           <input type="text" id="itemHeight" name="itemHeight" placeholder="Height (inches)" class="my-2 p-2 w-64 border border-gray-400 rounded shadow-xl focus:outline-none focus:ring-purple-500 focus:border-purple-500">
           <input type="text" id="itemWidth" name="itemWidth" placeholder="Width (inches)" class="my-2 p-2 w-64 border border-gray-400 rounded shadow-xl focus:outline-none focus:ring-purple-500 focus:border-purple-500">
@@ -57,7 +51,7 @@
           <input type="text" id="color" name="color" placeholder="Color" class="my-2 p-2 w-64 border border-gray-400 rounded shadow-xl focus:outline-none focus:ring-purple-500 focus:border-purple-500">
           <input type="text" id="neighborhood" name="neighborhood" placeholder="Neighborhood" class="my-2 p-2 w-64 border border-gray-400 rounded shadow-xl focus:outline-none focus:ring-purple-500 focus:border-purple-500">
           <input type="text" id="imageURL" name="imageURL" placeholder="Image URL" class="my-2 p-2 w-64 border border-gray-400 rounded shadow-xl focus:outline-none focus:ring-purple-500 focus:border-purple-500">
-          <button class="bg-green-500 hover:bg-green-600 text-white px-4 py-2 rounded-xl">Post</button>
+          <button class="bg-yellow-600 hover:bg-yellow-900 text-white px-4 py-2 rounded-xl">Post</button>
         </form>
       </div>
     </div>

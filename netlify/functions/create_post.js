@@ -26,7 +26,7 @@ exports.handler = async function(event) {
     itemWidth: itemWidth, 
     neighborhood: neighborhood, 
     userName: userName,
-    userEmail:userEmail,
+    userEmail: userEmail,
     created: firebase.firestore.FieldValue.serverTimestamp()
   }
 
