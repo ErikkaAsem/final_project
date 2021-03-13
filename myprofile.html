@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>HomegoodSwap</title>
+  <link href="https://unpkg.com/tailwindcss@^2/dist/tailwind.min.css" rel="stylesheet" type="text/css">
+  <link type="text/css" rel="stylesheet" href="https://www.gstatic.com/firebasejs/ui/4.7.3/firebase-ui-auth.css" />
+</head>
+
+<body>
+      
+      <h1 class="font-bold text-6xl text-yellow-500 text-center">HomegoodSwap</h1>
+      <h2 class="font-bold text-3xl text-blue-600 text-center m-4">My Profile</h2>
+      
+      <div class="flex">
+        <div class="my-items w-1/2 border text-yellow-500 text-xl text-center m-4 p-2"> My Items </div>
+        <div class="my-swaps w-1/2 border text-yellow-500 text-xl text-center m-4 p-2"> My Swaps </div>
+      </div>
+      
+      <div class="flex site-nav-buttons">
+        <div class="post-item-button p-2 m-4 w-1/2">
+          <a href=post-item.html class=" border rounded text-blue-500 text-xl p-2"> Post a new item! </a>
+        </div>
+
+        <div class="home-page-button p-2 m-4 w-1/2">
+          <a href=homepage2.html class="border rounded text-blue-500 text-xl p-2"> Back to the homepage! </a>
+        </div>
+    </div>
+        
+    
+
+</body>
+
+
+<!-- 1. ✅ Section for link to return to homepage -->
+
+<!-- 2. ✅ Section for Sitename -->
+
+<!-- 3. ✅ Section for two divs: my items and contact info for swaps titled My Profile -->
+
+<!-- 3a. Section to display my items -->
+<!-- 3b. Section for display contact info for swaps -->
+
+<!-- 4. ✅Section for link to post a new item  -->
+
+<!-- Firebase config --> 
+<!-- The core Firebase JS SDK is always required and must be listed first -->
+<script src="https://www.gstatic.com/firebasejs/8.3.0/firebase-app.js"></script>
+
+<!-- TODO: Add SDKs for Firebase products that you want to use
+     https://firebase.google.com/docs/web/setup#available-libraries -->
+     <script src="https://www.gstatic.com/firebasejs/8.3.0/firebase-firestore.js"></script>
+
+<script>
+  // Your web app's Firebase configuration
+  var firebaseConfig = {
+    apiKey: "AIzaSyArNFCDtGXORek260t00Eq6j7UefiiWA0I",
+    authDomain: "kiei-451-bd7ba.firebaseapp.com",
+    projectId: "kiei-451-bd7ba",
+    storageBucket: "kiei-451-bd7ba.appspot.com",
+    messagingSenderId: "115378137779",
+    appId: "1:115378137779:web:22b50517a638f3a54a1ec6"
+  };
+  // Initialize Firebase
+  firebase.initializeApp(firebaseConfig);
+</script>
+
+<!-- Connect to JS page -->
+<script src="myprofile.js"></script>
