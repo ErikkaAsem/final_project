@@ -7,7 +7,7 @@ firebase.auth().onAuthStateChanged(async function(user) {
         console.log('signed in')
         // Sign-out button
         document.querySelector('.sign-in-or-sign-out').innerHTML = `
-          <button class="text-pink-500 underline sign-out">Sign Out</button>
+          <button class="font-bold text-xs text-yellow-900 text-center sign-out">Sign Out</button>
         `
         document.querySelector('.sign-out').addEventListener('click', function(event) {
           console.log('sign out clicked')
@@ -15,7 +15,9 @@ firebase.auth().onAuthStateChanged(async function(user) {
           document.location.href = 'index.html'
         })
         document.querySelector('.navigation').innerHTML=`
-        <a href = "./post-item.html">Post Item</a>
+        <p><a class="font-bold text-xs text-yellow-900 text-center" href = "./post-item.html">Post Item</a></p>
+        <p><a class="font-bold text-xs text-yellow-900 text-center" href = "./homepage2.html">View Available Items</a></p>
+        <p> <a class="font-bold text-xs text-yellow-900 text-center" href = "./myprofile.html">My Profile</a></p>
         `
 
   } else {
