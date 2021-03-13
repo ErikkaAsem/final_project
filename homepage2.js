@@ -14,29 +14,16 @@ for (let i = 0; i < json.length; i++) {
     let post = json[i]
     console.log(post)
 
-    document.querySelector('.all-filter').insertAdjacentHTML('beforeend', `
-          <div class="border-4 ${borderClass} p-4 my-4 text-left">
-            <div class="flex">
-            <div class="w-1/2">
-              <h2 class="text-2xl py-1">${furniture.itemName}</h2>
-              <div class="w-1/2">
-                <p class="font-bold text-gray-600">Color: ${furniture.color}</p>
-              </div>
-              <div class="w-1/2">
-              <p class="font-bold text-gray-600">Color: ${furniture.neighborhood}</p>
-              </div>
-              <div class="w-1/2">
-              <p class="font-bold text-gray-600">Color: ${furniture.itemHeight}</p>
-              </div>
-              <div class="w-1/2">
-             <p class="font-bold text-gray-600">Color: ${furniture.itemLength}</p>
-             </div>
-              <div class="w-1/2">
-              <p class="font-bold text-gray-600">Color: ${furniture.itemWidth}</p>
-              </div>
-              </div>
-            </div>
-          </div>
+    document.querySelector('.posts').insertAdjacentHTML('beforeend', `
+    <div class="flex border-4 p-4 my-4 text-center">
+    <div class="w-1/2">
+      <h2 class="text-2xl py-1">${post.itemName}</h2>
+        <p class="font-bold text-gray-600">Color: Gold</p>
+        <p class="font-bold text-gray-600">Neighborhood: The Loop</p>
+        <p class="font-bold text-gray-600">Height: 18</p>
+        <p class="font-bold text-gray-600">Length: 12</p> </div>
+        <img src='https://secure.img1-fg.wfcdn.com/im/96961347/resize-h800%5Ecompr-r85/1306/130612595/Hive+6+Bottle+Tabletop+Wine+Bottle+Rack.jpg' width="200" height="200" class="w-1/2">
+    </div>
         `)
       }
     
