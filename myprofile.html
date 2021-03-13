@@ -11,14 +11,51 @@
 
 <body>
       
-      <h1 class="font-bold text-6xl text-yellow-500 text-center">HomegoodSwap</h1>
+      <h1 class="font-bold text-6xl text-yellow-500 text-center p-4">HomegoodSwap</h1>
       <h2 class="font-bold text-3xl text-blue-600 text-center m-4">My Profile</h2>
       
       <div class="flex">
-        <div class="my-items w-1/2 border text-yellow-500 text-xl text-center m-4 p-2"> My Items </div>
-        <div class="my-swaps w-1/2 border text-yellow-500 text-xl text-center m-4 p-2"> My Swaps </div>
+        <div class="my-items w-1/2 border text-yellow-500 text-xl text-center m-4 p-2"> My Items 
+        
+                <div class="flex border-4 p-4 my-4 text-center">
+                  <div class="w-1/2">
+                    <h2 class="text-2xl py-1">Hexagon Wine Rack</h2>
+                      <p class="font-bold text-gray-600">Color: Gold</p>
+                      <p class="font-bold text-gray-600">Neighborhood: The Loop</p>
+                      <p class="font-bold text-gray-600">Height: 18</p>
+                      <p class="font-bold text-gray-600">Length: 12</p> </div>
+                      <img src='https://secure.img1-fg.wfcdn.com/im/96961347/resize-h800%5Ecompr-r85/1306/130612595/Hive+6+Bottle+Tabletop+Wine+Bottle+Rack.jpg' width="200" height="200" class="w-1/2">
+                  </div>
+
+                <div class="flex border-4 p-4 my-4 text-center">
+                  <div class="w-1/2">
+                    <h2 class="text-2xl py-1">Hexagon Wine Rack</h2>
+                      <p class="font-bold text-gray-600">Color: Gold</p>
+                      <p class="font-bold text-gray-600">Neighborhood: The Loop</p>
+                      <p class="font-bold text-gray-600">Height: 18</p>
+                      <p class="font-bold text-gray-600">Length: 12</p> </div>
+                      <img src='https://secure.img1-fg.wfcdn.com/im/96961347/resize-h800%5Ecompr-r85/1306/130612595/Hive+6+Bottle+Tabletop+Wine+Bottle+Rack.jpg' width="200" height="200" class="w-1/2">
+                  </div>
+          </div>
+
+        <div class="my-swaps w-1/2 border text-yellow-500 text-xl text-center m-4 p-2"> My Swaps 
+          
+          <div class="swaps-list border-2 m-4 text-gray-600">
+            <p>User's Name</p>
+            <p>User's Email</p>
+            <p>Item to Swap</p>
+          </div>
+
+          <div class="swaps-list border-2 m-4 text-gray-600">
+            <p>User's Name</p>
+            <p>User's Email</p>
+            <p>Item to Swap</p>
+          </div>
+
+        </div>
+
       </div>
-      
+            
       <div class="flex site-nav-buttons">
         <div class="post-item-button p-2 m-4 w-1/2">
           <a href=post-item.html class=" border rounded text-blue-500 text-xl p-2"> Post a new item! </a>
@@ -52,6 +89,8 @@
 <!-- TODO: Add SDKs for Firebase products that you want to use
      https://firebase.google.com/docs/web/setup#available-libraries -->
      <script src="https://www.gstatic.com/firebasejs/8.3.0/firebase-firestore.js"></script>
+     <script src="https://www.gstatic.com/firebasejs/8.3.0/firebase-auth.js"></script>
+     <script src="https://www.gstatic.com/firebasejs/8.3.0/firebase-ui-auth.js"></script>
 
 <script>
   // Your web app's Firebase configuration
