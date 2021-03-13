@@ -1,14 +1,120 @@
 firebase.auth().onAuthStateChanged(async function(user) {
     
-//! GETTING AN ERROR ON THE LINE BELOW !
     let db = firebase.firestore()
-    let response = await fetch('/.netlify/functions/create_post')
+    let response = await fetch('/.netlify/functions/get_furniture')
     let json = await response.json()
     let posts = json.results
     console.log(posts)
     
     if (user) {
 console.log('signed in')
+
+function colorFilter(post) {
+    let colorFilter
+    if (furniture.color == 'gold') {
+        colorFilter = 'Gold'
+    } else if (furniture.color == 'green') {
+        colorFilter = 'Green'
+    } else if (furniture.color == 'white') {
+        colorFilter = 'White'
+    } else if (furniture.color == 'silver') {
+        colorFilter = 'Silver'
+    } else if (furniture.color == 'off-white') {
+        colorFilter = 'Off-White'
+    } else if (furniture.color == 'black') {
+        colorFilter = 'Black'
+    } else if (furniture.color == 'grey') {
+        colorFilter = 'Grey'
+    } else if (furniture.color == 'blue') {
+        colorFilter = 'Blue'
+    } else if (furniture.color == 'brown') {
+        colorFilter = 'Brown'
+    } else {
+        colorFilter = 'Multi'
+    }
+    return colorFilter
+  }
+
+  function renderFurniture(furnitureArray) {
+    for (let i = 0; i < furnitureArray.length; i++) {
+      let furniture = furnitureArray[i]
+  
+  
+        document.querySelector('.all-filter').insertAdjacentHTML('beforeend', `
+          <div class="border-4 ${borderClass} p-4 my-4 text-left">
+            <div class="flex">
+            <div class="w-1/2">
+              <h2 class="text-2xl py-1">${furniture.itemName}</h2>
+              <div class="w-1/2">
+                <p class="font-bold text-gray-600">Color: ${furniture.color}</p>
+              </div>
+              <div class="w-1/2">
+              <p class="font-bold text-gray-600">Color: ${furniture.neighborhood}</p>
+              </div>
+              <div class="w-1/2">
+              <p class="font-bold text-gray-600">Color: ${furniture.itemHeight}</p>
+              </div>
+              <div class="w-1/2">
+             <p class="font-bold text-gray-600">Color: ${furniture.itemLength}</p>
+             </div>
+              <div class="w-1/2">
+              <p class="font-bold text-gray-600">Color: ${furniture.itemWidth}</p>
+              </div>
+              </div>
+            </div>
+          </div>
+        `)
+      }
+    }
+  }
+
+  window.addEventListener('DOMContentLoaded', function() {
+
+    let allFurniture = document.querySelector('#all-filter')
+allRides.addEventListener('click', async function(event) {
+  
+// request the ride data from our "API"
+event.preventDefault()
+document.querySelector('.posts').innerHTML = ''
+
+let response = await fetch('/.netlify/functions/get_furniture')
+let json = await response.json()
+// !!pass the array of rides to the provided renderRides() function to display all the rides (same as they appeared at the end of last week's assignment)
+//renderRides(allRides)
+renderFurniture(json)
+ 
+})
+
+// (2 points) Add an event listener to the "Noober Purple" button, so that when it is clicked, there is some output in the console to indicate which button was clicked.
+let white = document.querySelector('#white-filter')
+white.addEventListener('click', async function(event) {
+  console.log(event.target.innerHTML)
+
+// (4 points) When the event occurs:
+// request the ride data from our "API"
+event.preventDefault()
+
+let response = await fetch('/.netlify/functions/get_furniture')
+let json = await response.json()
+// create a new empty array
+document.querySelector('.posts').innerHTML = ''
+let furnitureArray = []
+// loop through the rides and for each ride, use the provided levelOfService() function to determine the service level, and use newArray.push(ride) to add "Noober Purple" rides into the new array
+
+  for (let i = 0; i < json.length; i++) {
+    let post = json[i]
+    console.log(post)
+
+    colorFilter(post)
+    console.log(colorFilter(post))
+
+    
+if (colorFilter(post) == 'white') {
+  furnitureArray.push(post) 
+} 
+  }
+  renderFurniture(furnitureArray)
+})
  //   db.collection('users').doc(user.uid).set({
  //       name: user.displayName,
  //       email: user.email
@@ -56,7 +162,7 @@ console.log('signed in')
         console.log(user)
         await db.collection('trade').doc(`${post.id}-${user.email}`).set({})
       }) 
-    } 
+    
 
 } else {
 
@@ -75,7 +181,7 @@ console.log('signed in')
         ui.start('.sign-in-or-sign-out', authUIConfig)
       }
     })
-         
+}  
 // changed "movies" to "posts"
   // Goal:   Refactor the movies application from last week, so that it supports
   //         user login and each user can have their own watchlist.
