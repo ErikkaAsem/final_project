@@ -22,12 +22,7 @@ if (user) {
     console.log(uid)
 
     let db = firebase.firestore()
-
-    db.collection('users').doc(user.uid).set({
-      name: user.displayName,
-      email: user.email
-    })
-
+    
     let querySnapshot = await db.collection('furniture').where('userEmail', '==', email).get()
     console.log(`Number to todos in collection: ${querySnapshot.size}`)
 
@@ -43,7 +38,7 @@ if (user) {
       let itemLength = item.itemLength
 
       document.querySelector('.my-items').insertAdjacentHTML('beforeend', `
-      <div class="flex border-4 p-4 my-4 text-center">
+      <div class="item-${itemId} flex border-4 p-4 my-4 text-center">
       <div class="w-1/2">
         <h2 class="text-2xl py-1">${itemName}</h2>
           <p class="font-bold text-gray-600">Color: ${itemColor}</p>
@@ -51,8 +46,16 @@ if (user) {
           <p class="font-bold text-gray-600">Height: ${itemHeight}</p>
           <p class="font-bold text-gray-600">Length: ${itemLength}</p> </div>
           <img src='${itemImage}' width="200" height="200" class="w-1/2">
+          <a href="#" class="done p-2 text-sm bg-green-500 text-white">✓</a>
       </div>
         `)
+
+    document.querySelector(`.item-${itemId} .done`).addEventListener('click', async function(event) {
+        event.preventDefault()
+        document.querySelector(`.item-${itemId}`).classList.add('opacity-20')
+        await db.collection('todos').doc(todoId).delete()
+        })
+    
 
 
     }  
