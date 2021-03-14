@@ -60,14 +60,18 @@ firebase.auth().onAuthStateChanged(async function (user) {
     </div>
         `)}
 //NEED HELP WITH BELOW
-        document.querySelector(`.post-${post.itemName}`).addEventListener('click', async function(event) {
+for (let i = 0; i < json.length; i++) {
+    let post = json[i]
+let itemId = post.itemName
+        document.querySelector(`.post-${post.itemEd} .swap-button`).addEventListener('click', async function(event) {
             event.preventDefault()
-            let swapElement = document.querySelector(`.post-${post.itemName}`)
-            swapElement.classList.add('opacity-20')
-            await db.collection('swap').doc(`${post.itemName}-${user.uid}`).set({})
+            console.log(`post ${itemId} swap button clicked`)
+       //     let swapElement = document.querySelector(`.post-${post.itemName}`)
+         //   swapElement.classList.add('opacity-20')
+           // await db.collection('swap').doc(`${post.itemName}-${user.uid}`).set({})
           }) 
   //NEED HELP WITH ABOVE
-  
+        }
   
         //if statement for color for above loop
         document.querySelector(`#white-filter`).addEventListener('click', async function (event) {
