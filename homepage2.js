@@ -1,3 +1,7 @@
+//1 SWAP BUTTON
+//2 FUNCTIONS BEING USED PROPERLY
+//3 FILTER
+
 function colorFilter(post) {
     let colorFilter
     if (post.color == 'gold') {
@@ -26,7 +30,7 @@ function colorFilter(post) {
 
 function renderItems(itemsArray) {
     for (let i = 0; i < itemsArray.length; i++) {
-      let item = itemsArray[i]
+        let item = itemsArray[i]
     }
 }
 
@@ -35,8 +39,8 @@ firebase.auth().onAuthStateChanged(async function (user) {
     let db = firebase.firestore()
     let response = await fetch('/.netlify/functions/get_furniture')
     let json = await response.json()
-    
-    
+
+
     console.log(json)
 
     if (user) {
@@ -49,46 +53,62 @@ firebase.auth().onAuthStateChanged(async function (user) {
 
             document.querySelector('.posts').insertAdjacentHTML('beforeend', `
     <div class="flex border-4 p-4 my-4 text-center">
-    <div class="w-1/2">
+    <div class="w-1/2 post-${post.id}">
       <h2 class="text-2xl py-1 font-bold text-green-700 text-xl">${post.itemName}</h2>
         <p class="font-bold text-yellow-600">Color: ${post.color}</p>
         <p class="font-bold text-yellow-600">Neighborhood: ${post.neighborhood}</p>
         <p class="font-bold text-yellow-600">Height: ${post.itemHeight}</p>
         <p class="font-bold text-yellow-600">Length: ${post.itemLength}</p> </div>
         <img src='${post.imageURL}' width="200" height="200" class="w-1/2">
-        <a href="#" class="swap-button block text-center text-white bg-green-700 hover:bg-green-900 mt-4 px-4 py-2 rounded">Let's swap!</a>
+        <a href="#" class="swap-button-${post.id} block text-center text-white bg-green-700 hover:bg-green-900 mt-4 px-4 py-2 rounded">Let's swap!</a>
     </div>
-        `)}
-//NEED HELP WITH BELOW
-for (let i = 0; i < json.length; i++) {
-    let post = json[i]
-let itemId = post.itemName
-        document.querySelector(`.post-${post.itemEd} .swap-button`).addEventListener('click', async function(event) {
-            event.preventDefault()
-            console.log(`post ${itemId} swap button clicked`)
-       //     let swapElement = document.querySelector(`.post-${post.itemName}`)
-         //   swapElement.classList.add('opacity-20')
-           // await db.collection('swap').doc(`${post.itemName}-${user.uid}`).set({})
-          }) 
-  //NEED HELP WITH ABOVE
+        `)
         }
-  
+        //NEED HELP WITH BELOW
+        for (let i = 0; i < json.length; i++) {
+            let post = json[i]
+            let itemId = post.itemName
+            let swapButton = document.querySelector(`.posts .swap-button-${post.id}`)
+
+            swapButton.addEventListener('click', async function (event) {
+                event.preventDefault()
+                console.log(`post ${itemId} swap button clicked`)
+
+
+                let swapResponse = await fetch('/.netlify/functions/swap', {
+                    method: 'POST',
+                    body: JSON.stringify({
+                        postId: post.id,
+                        userId: user.uid
+                    })
+                })
+                if (swapResponse.ok) {
+                    let swapElement = document.querySelector(`.post-${post.id}`)
+                    swapElement.classList.add('opacity-20')
+                }
+
+
+            })
+            //NEED HELP WITH ABOVE
+        }
+
         //if statement for color for above loop
         document.querySelector(`#white-filter`).addEventListener('click', async function (event) {
             console.log('white was clicked')
             event.preventDefault()
-//NEED HELP WITH BELOW
-          // create a new empty array
-          document.querySelector('.posts').insertAdjacentHTML = ''
-          let itemArray = []
-          // loop through the rides and for each ride, use the provided levelOfService() function to determine the service level, and use newArray.push(ride) to add "Noober Purple" rides into the new array
-              
-  if (`${post.color}` == 'white') {
+            //NEED HELP WITH BELOW
+            // create a new empty array
+            document.querySelector('.posts').insertAdjacentHTML = ''
+            let itemArray = []
+            // loop through the rides and for each ride, use the provided levelOfService() function to determine the service level, and use newArray.push(ride) to add "Noober Purple" rides into the new array
 
-    renderItems(post)
-}}
+            if (`${post.color}` == 'white') {
+
+                renderItems(post)
+            }
+        }
         )
-//NEED HELP WITH ABOVE
+        //NEED HELP WITH ABOVE
         document.querySelector(`#green-filter`).addEventListener('click', async function (event) {
             console.log('green was clicked')
 
@@ -96,19 +116,19 @@ let itemId = post.itemName
         document.querySelector(`#silver-filter`).addEventListener('click', async function (event) {
             console.log('white was clicked')
 
-        })        
+        })
         document.querySelector(`#brown-filter`).addEventListener('click', async function (event) {
             console.log('white was clicked')
 
-        })        
+        })
         document.querySelector(`#black-filter`).addEventListener('click', async function (event) {
             console.log('white was clicked')
 
-        })        
+        })
         document.querySelector(`#multi-filter`).addEventListener('click', async function (event) {
             console.log('white was clicked')
 
-        })        
+        })
         document.querySelector(`#off-white-filter`).addEventListener('click', async function (event) {
             console.log('white was clicked')
 
@@ -128,7 +148,8 @@ let itemId = post.itemName
         document.querySelector(`#the-loop-filter`).addEventListener('click', async function (event) {
             console.log('white was clicked')
 
-        })    
+        })
+
         //insertadjacent
         //shift option 
     } else {
