@@ -8,6 +8,8 @@ if (user) {
     document.querySelector('.sign-in-or-sign-out').innerHTML = `
     <button class="text-pink-500 underline sign-out">Sign Out</button>
     `
+    
+
     document.querySelector('.sign-out').addEventListener('click', function(event) {
         console.log('sign out clicked')
         firebase.auth().signOut()
@@ -22,69 +24,33 @@ if (user) {
     console.log(uid)
 
     let db = firebase.firestore()
-    
-    let querySnapshot = await db.collection('furniture').where('userEmail', '==', email).get()
-    console.log(`Number to todos in collection: ${querySnapshot.size}`)
+    let response = await fetch(`/.netlify/functions/get_furniture?userEmail=${email}`)
+    let posts = await response.json()
+    console.log(posts.length)
 
-    let items = querySnapshot.docs
-    for (let i=0; i<items.length; i++) {
-      let itemId = items[i].id
-      let item = items[i].data()
-      let itemName = item.itemName
-      let itemImage = item.imageURL
-      let itemNeighborhood = item.neighborhood
-      let itemColor = item.color 
-      let itemHeight = item.itemHeight
-      let itemLength = item.itemLength
+    for (let i = 0; i < posts.length; i++) {
+      let post = posts[i]
 
       document.querySelector('.my-items').insertAdjacentHTML('beforeend', `
-      <div class="item-${itemId} flex border-4 p-4 my-4 text-center">
-      <div class="w-1/2">
-        <h2 class="text-2xl py-1">${itemName}</h2>
-          <p class="font-bold text-gray-600">Color: ${itemColor}</p>
-          <p class="font-bold text-gray-600">Location: ${itemNeighborhood}</p>
-          <p class="font-bold text-gray-600">Height: ${itemHeight}</p>
-          <p class="font-bold text-gray-600">Length: ${itemLength}</p> </div>
-          <img src='${itemImage}' width="200" height="200" class="w-1/2">
-          <a href="#" class="done p-2 text-sm bg-green-500 text-white">✓</a>
-      </div>
-        `)
+        <div class="flex border-4 p-4 my-4 text-center">
+        <div class="w-1/2 post-${post.id}">
+        <h2 class="text-2xl py-1 font-bold text-green-700 text-xl">${post.itemName}</h2>
+          <p class="font-bold text-yellow-600">Color: ${post.color}</p>
+          <p class="font-bold text-yellow-600">Neighborhood: ${post.neighborhood}</p>
+          <p class="font-bold text-yellow-600">Height: ${post.itemHeight}</p>
+          <p class="font-bold text-yellow-600">Length: ${post.itemLength}</p> </div>
+          <img src='${post.imageURL}' width="200" height="200" class="w-1/2">
+          <a href="#" class="done p-2 text-sm bg-green-800 text-white">❌</a>
+        </div>
+          `) 
 
-    document.querySelector(`.item-${itemId} .done`).addEventListener('click', async function(event) {
+    // let postId = await posts.id
+    document.querySelector(`post-${post.id} .done`).addEventListener('click', async function(event) {
         event.preventDefault()
-        document.querySelector(`.item-${itemId}`).classList.add('opacity-20')
-        await db.collection('todos').doc(todoId).delete()
-        })
-    
-
-
-    }  
-
-
-
-
-    // let querySnapshot = await db.collection('furniture').where('email', '==', email).get()
-    // console.log(querySnapshot)
-    // let items = querySnapshot.docs
-    // for (let i = 0; i < items.length; i++) {
-    //     let itemId = items[i].id
-    //     let itemData = items[i].data()
-    //     let itemName = itemData.itemName
-    //     let itemImageUrl = itemData.imageUrl
-
-    //     console.log(itemId)
-    //     console.log(itemData)
-    //     console.log(itemName)
-    //     console.log(itemImageUrl)
-    
-    //     renderItem(itemId, itemData, itemName, itemImageUrl)
-    // }
-
-    // function renderFurniture(furnitureArray) {
-    //     for (let i = 0; i < furnitureArray.length; i++) {
-    //       let furniture = furnitureArray[i]    
-
-
+        document.querySelector(`post-${post.id}`).classList.add('opacity-20')
+        await db.collection('furniture').doc(post).delete()
+        }) }
+      
 } else {
     let ui = new firebaseui.auth.AuthUI(firebase.auth())
     let authUIConfig = {

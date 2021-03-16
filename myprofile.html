@@ -9,17 +9,17 @@
   <link type="text/css" rel="stylesheet" href="https://www.gstatic.com/firebasejs/ui/4.7.3/firebase-ui-auth.css" />
 </head>
 
-<body>
+<body class="bg-yellow-50">
       
-      <h1 class="font-bold text-6xl text-yellow-500 text-center p-4">HomegoodSwap</h1>
-      <h2 class="font-bold text-3xl text-blue-600 text-center m-4">My Profile</h2>
+      <h1 class="font-bold text-6xl text-green-700 text-center p-4">Homegood Swap</h1>
+      <h2 class="font-bold text-3xl text-green-800 text-center m-4">My Profile</h2>
       
       <div class="flex">
-        <div class="my-items w-1/2 border text-yellow-500 text-xl text-center m-4 p-2"> My Items</div>
+        <div class="my-items w-1/2 border-4 rounded text-green-800 text-xl text-center m-4 p-2"> My Items</div>
 
         
 
-        <div class="my-swaps w-1/2 border text-yellow-500 text-xl text-center m-4 p-2"> My Swaps 
+        <div class="my-swaps w-1/2 border-4 rounded text-green-800 text-xl text-center m-4 p-2"> My Swaps 
           
           <!-- <div class="swaps-list border-2 m-4 text-gray-600">
             <p>User's Name</p>
@@ -39,24 +39,17 @@
 
             <div class="flex site-nav-buttons">
               <div class="post-item-button p-2 m-4 w-1/3 text-center">
-                <a href=post-item.html class=" border rounded text-blue-500 text-xl p-2"> Post a new item</a>
+                <a href=post-item.html class=" border rounded text-yellow-800 text-xl p-2"> Post a new item</a>
               </div>
 
               <div class="home-page-button p-2 m-4 w-1/3 text-center">
-                <a href=homepage2.html class="border rounded text-blue-500 text-xl p-2"> Back to the homepage</a>
+                <a href=homepage2.html class="border rounded text-yellow-800 text-xl p-2"> Back to the homepage</a>
               </p>
 
-              <div class="sign-in-or-sign-out p-2 m-4 w-1/3 text-center">
-                <a href class="border rounded text-blue-500 text-xl p-2"> Sign Out</a>
-                <!-- <a href=homepage2.html class="border rounded text-blue-500 text-xl p-2"> Sign Out</a> -->
+              <div class="sign-in-or-sign-out p-2 m-4 w-1/3 text-center border rounded text-yellow-800 text-xl">
+                <a href=index.html class="border rounded text-yellow-800 text-xl p-2"> Sign Out</a>
               </div>
 
-
-              <!-- <div class="py-8 md:px-4 px-0 md:w-1/2 w-full mx-auto">
-                <div class="">
-                  <div class="text-sm sign-in-or-sign-out"></div>
-                </div></div> -->
-            
             </div>
 
 
@@ -79,13 +72,11 @@
 
 <!-- Firebase config --> 
 <!-- The core Firebase JS SDK is always required and must be listed first -->
-<script src="https://www.gstatic.com/firebasejs/8.3.0/firebase-app.js"></script>
-
-<!-- TODO: Add SDKs for Firebase products that you want to use
-     https://firebase.google.com/docs/web/setup#available-libraries -->
-     <script src="https://www.gstatic.com/firebasejs/8.3.0/firebase-firestore.js"></script>
-     <script src="https://www.gstatic.com/firebasejs/8.3.0/firebase-auth.js"></script>
-     <script src="https://www.gstatic.com/firebasejs/8.3.0/firebase-ui-auth.js"></script>
+<script src="https://www.gstatic.com/firebasejs/8.2.7/firebase-app.js"></script>
+<!-- Firebase Auth -->
+<script src="https://www.gstatic.com/firebasejs/8.2.7/firebase-auth.js"></script>
+<script src="https://www.gstatic.com/firebasejs/ui/4.7.3/firebase-ui-auth.js"></script>
+<script src="https://www.gstatic.com/firebasejs/8.2.7/firebase-firestore.js"></script>
 
 <script>
   // Your web app's Firebase configuration

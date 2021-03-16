@@ -22,7 +22,8 @@ exports.handler = async function(event) {
     // add a new Object of our own creation to the postsData Array
     allFurnitureData.push({
       id: furnitureId,                                           // the post ID
-      imageURL: furnitureData.imageURL,                          // the image URL
+      imageURL: furnitureData.imageURL,  
+      userEmail: furnitureData.userEmail,                        // the image URL
       userName: furnitureData.userName,  
       color: furnitureData.color, 
       imageURL: furnitureData.imageURL, 
