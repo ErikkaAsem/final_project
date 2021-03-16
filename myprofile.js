@@ -42,14 +42,14 @@ if (user) {
           <img src='${post.imageURL}' width="200" height="200" class="w-1/2">
           <a href="#" class="done p-2 text-sm bg-green-800 text-white">❌</a>
         </div>
-          `) 
+          `) }
 
     // let postId = await posts.id
     document.querySelector(`post-${post.id} .done`).addEventListener('click', async function(event) {
         event.preventDefault()
         document.querySelector(`post-${post.id}`).classList.add('opacity-20')
         await db.collection('furniture').doc(post).delete()
-        }) }
+        }) 
       
 } else {
     let ui = new firebaseui.auth.AuthUI(firebase.auth())
