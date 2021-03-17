@@ -77,7 +77,9 @@ firebase.auth().onAuthStateChanged(async function (user) {
                     method: 'POST',
                     body: JSON.stringify({
                         postId: post.id,
-                        userId: user.uid
+                        userId: user.uid,
+                        username: user.displayName,
+                        email: user.email
                     })
                 })
                 if (swapResponse.ok) {

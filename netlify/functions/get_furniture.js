@@ -5,12 +5,22 @@ let firebase = require('./firebase')
 
 exports.handler = async function(event) {
   let db = firebase.firestore()                             // define a variable so we can use Firestore
-  let allFurnitureData = []                                        // an empty Array
+  let allFurnitureData = []                                 // an empty Array
+  console.log(event) 
+                                       
+
+  let emailFilter = event.queryStringParameters.userEmail
   
-  let furnitureQuery = await db.collection('furniture')             // posts from Firestore
-                           .orderBy('created')              // ordered by created
+  let furnitureQuery
+  if (emailFilter) {
+  furnitureQuery = await db.collection('furniture')  
+                            .where('userEmail', "==", emailFilter)           // posts from Firestore
                            .get()
-  let furniture = furnitureQuery.docs                               // the post documents themselves
+    }
+  else {
+  furnitureQuery = await db.collection('furniture').get()
+  }   
+  let furniture = furnitureQuery.docs                          
   
   // loop through the post documents
   for (let i=0; i<furniture.length; i++) {

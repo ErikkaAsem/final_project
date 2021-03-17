@@ -24,9 +24,12 @@ if (user) {
     console.log(uid)
 
     let db = firebase.firestore()
-    let response = await fetch(`/.netlify/functions/get_furniture?userEmail=${email}`)
-    let posts = await response.json()
-    console.log(posts.length)
+
+    let furnitureQuery = await fetch(`/.netlify/functions/get_furniture?userEmail=${email}`)
+    let posts = await furnitureQuery.json()
+
+    // let swapsQuery = await fetch(`/.netlify/functions/`)
+    // console.log(posts.length)
 
     for (let i = 0; i < posts.length; i++) {
       let post = posts[i]
