@@ -5,6 +5,8 @@ exports.handler = async function(event) {
   let body = JSON.parse(event.body)
   let postId = body.postId
   let userId = body.userId
+  let userName = body.username
+  let userEmail = body.email
   
   console.log(`post: ${postId}`)
   console.log(`user: ${userId}`)
@@ -19,7 +21,10 @@ exports.handler = async function(event) {
   if (numberOfSwaps == 0) {
     let swap = await db.collection('swap').add({
       postId: postId,
-      userId: userId
+      userId: userId,
+      email: userEmail,
+      username: userName,
+      // itemName: itemName
     })
     return { 
         statusCode: 200,  

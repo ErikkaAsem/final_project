@@ -37,7 +37,9 @@ firebase.auth().onAuthStateChanged(async function (user) {
     let response = await fetch('/.netlify/functions/get_furniture')
     let json = await response.json()
 
-
+    document.querySelector('.sign-in-or-sign-out').innerHTML = `
+    <button class="font-bold text-xs text-yellow-900 text-center sign-out">Sign Out</button>
+  `
     console.log(json)
 
     if (user) {
@@ -49,8 +51,8 @@ firebase.auth().onAuthStateChanged(async function (user) {
             console.log(post)
 
             document.querySelector('.posts').insertAdjacentHTML('beforeend', `
-    <div class="flex border-4 p-4 my-4 text-center">
-    <div class="w-1/2 post-${post.id}">
+            <div class="flex border-4 p-4 my-4 text-center">
+            <div class="w-1/3 post-${post.id}">
       <h2 class="text-2xl py-1 font-bold text-green-700 text-xl">${post.itemName}</h2>
         <p class="font-bold text-yellow-600">Color: ${post.color}</p>
         <p class="font-bold text-yellow-600">Neighborhood: ${post.neighborhood}</p>
@@ -75,7 +77,9 @@ firebase.auth().onAuthStateChanged(async function (user) {
                     method: 'POST',
                     body: JSON.stringify({
                         postId: post.id,
-                        userId: user.uid
+                        userId: user.uid,
+                        username: user.displayName,
+                        email: user.email
                     })
                 })
                 if (swapResponse.ok) {
