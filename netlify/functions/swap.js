@@ -23,7 +23,8 @@ exports.handler = async function(event) {
       postId: postId,
       userId: userId,
       email: userEmail,
-      username: userName
+      username: userName,
+      // itemName: itemName
     })
     return { 
         statusCode: 200,  

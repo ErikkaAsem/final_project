@@ -2,23 +2,55 @@ let firebase = require('./firebase')
 
 exports.handler = async function(event) {
     let db = firebase.firestore()                             
-    let allSwaps = []
 
-    let swapsQuery = await db.collection('swap')             
-                           .orderBy('created')              
-                           .get()
-    let swaps = await swapsQuery.docs
+let allFurnitureData = []
+let allSwapsData = []                                 
+                                        
+let emailFilter = event.queryStringParameters.userEmail
 
-    for (let i=0; i<swaps.length; i++) {
-        let swapId = swaps[i].id
-        let userId = swaps[i].userId
+let furnitureQuery = await db.collection('furniture')  
+                            .where('userEmail', "==", emailFilter)           
+                            .get()
+let furniture = furnitureQuery.docs                          
+
+for (let i=0; i<furniture.length; i++) {
+    let furnitureId = furniture[i].id                                
+    let furnitureData = furniture[i].data()                          
+
+    allFurnitureData.push({
+    id: furnitureId,                                           
+    imageURL: furnitureData.imageURL,  
+    userEmail: furnitureData.userEmail,                        
+    userName: furnitureData.userName,  
+    color: furnitureData.color, 
+    imageURL: furnitureData.imageURL, 
+    itemHeight: furnitureData.itemHeight, 
+    itemLength: furnitureData.itemLength, 
+    itemName: furnitureData.itemName, 
+    itemWidth: furnitureData.itemWidth, 
+    neighborhood: furnitureData.neighborhood,                        
+    })
+
+let swapsQuery = await db.collection('swap')
+                         .where('postId', '==', furnitureId)
+                         .get()
+let swaps = await swapsQuery.docs
+
+for (let i = 0; i < swaps.length; i++) {
+    let swapsData = swaps[i].data()
+
+    allSwapsData.push({
+        postId: swapsData.postId,
+        userName: swapsData.username,
+        userEmail: swapsData.email,
+        userId: swapsData.userId,
+        // itemName: swapsData.itemName
+    })
+
     }
- 
 
-    }
-}
+    return {
+        statusCode: 200,
+        body: JSON.stringify(allSwapsData) }
 
-// get the furniture, filtered by the email
-// filter by the post ID in a swaps function
-// show the username and email from the swap
-// check out comments on Kelloggram
+} }
